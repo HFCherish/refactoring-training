@@ -3,6 +3,7 @@ package com.tw.refactoring.movierental2;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.tw.refactoring.movierental2.Statements.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -36,7 +37,7 @@ public class CustomerTest {
      */
     @Test
     public void should_print_statement_right() {
-        String result = customer.statement();
+        String result = newTextStatement().value(customer);
 
         assertThat(result, is("Rental record for " + customer.id() + ": \n" +
                 "\t" + newMovie.name() + ": 3.00\n" +
@@ -48,7 +49,7 @@ public class CustomerTest {
 
     @Test
     public void should_print_html_statement_right() {
-        String result = customer.htmlStatement();
+        String result = newHtmlStatement().value(customer);
         assertThat(result, is("<h1>Rental record for <em>" + customer.id() + "</em>:</h1>" +
                 "<p>" +
                     newMovie.name() + ": 3.00<br>" +
