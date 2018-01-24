@@ -1,11 +1,8 @@
-package com.tw.refactoring.movierental;
+package com.tw.refactoring.movierental2;
 
-import j2html.tags.ContainerTag;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.tw.refactoring.movierental.Statements.textStatement;
-import static j2html.TagCreator.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -39,41 +36,30 @@ public class CustomerTest {
      */
     @Test
     public void should_print_statement_right() {
-        String result = textStatement().statement(customer);
+        String result = customer.statement();
 
         assertThat(result, is("Rental record for " + customer.id() + ": \n" +
                 "\t" + newMovie.name() + ": 3.00\n" +
                 "\t" + forChildren.name() + ": 1.50\n" +
                 "\t" + normalMovie.name() + ": 2.00\n" +
                 "total: 6.5\n" +
-                "earned points: 3"));
+                "earned points: 3\n"));
     }
 
     @Test
     public void should_print_html_statement_right() {
-        ContainerTag result = Statements.htmlStatement().statement(customer);
-
-        ContainerTag html = html(
-                body(
-                        h1(text("Rental record for "), em(customer.id()), text(":")),
-
-                        p(
-                                text(newMovie.name() + ": 3.00"),
-                                br(),
-                                text(forChildren.name() + ": 1.50"),
-                                br(),
-                                text(normalMovie.name() + ": 2.00"),
-                                br()),
-
-                        p(
-                                text("total: "), em("6.5"), br(),
-                                text("earned points: "), em("3"))
-                )
-        );
-
-        assertThat(result, is(html));
-
-        System.out.println(html.render());
-
+        String result = customer.htmlStatement();
+        assertThat(result, is("<h1>Rental record for <em>" + customer.id() + "</em>:</h1>" +
+                "<p>" +
+                    newMovie.name() + ": 3.00<br>" +
+                    forChildren.name() + ": 1.50<br>" +
+                    normalMovie.name() + ": 2.00<br>" +
+                "</p>" +
+                "<p>" +
+                    "total: <em>6.5</em><br>" +
+                    "earned points: <em>3</em>" +
+                "</p>"));
     }
+
+
 }
