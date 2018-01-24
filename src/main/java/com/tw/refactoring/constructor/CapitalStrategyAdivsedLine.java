@@ -1,4 +1,4 @@
-package com.tw.refactoring.templatemethod;
+package com.tw.refactoring.constructor;
 
 /**
  * @author pzzheng
