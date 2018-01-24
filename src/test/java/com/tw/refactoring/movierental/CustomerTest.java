@@ -4,6 +4,7 @@ import j2html.tags.ContainerTag;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.tw.refactoring.movierental.Statements.textStatement;
 import static j2html.TagCreator.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -38,7 +39,7 @@ public class CustomerTest {
      */
     @Test
     public void should_print_statement_right() {
-        String result = customer.statement();
+        String result = textStatement().statement(customer);
 
         assertThat(result, is("Rental record for " + customer.id() + ": \n" +
                 "\t" + newMovie.name() + ": 3.00\n" +
@@ -50,9 +51,9 @@ public class CustomerTest {
 
     @Test
     public void should_print_html_statement_right() {
-        ContainerTag result = customer.htmlStatement();
+        ContainerTag result = Statements.htmlStatement().statement(customer);
 
-        assertThat(result.render(), is(html(
+        assertThat(result, is(html(
                 body(
                         h1(text("Rental record for "), em(customer.id()), text(":")),
 
@@ -68,7 +69,7 @@ public class CustomerTest {
                                 text("total: "), em("6.5"), br(),
                                 text("earned points: "), em("3"))
                 )
-        ).render()));
+        )));
 
     }
 }
