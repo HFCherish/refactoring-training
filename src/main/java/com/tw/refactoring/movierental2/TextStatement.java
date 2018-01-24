@@ -1,25 +1,21 @@
 package com.tw.refactoring.movierental2;
 
-import java.util.stream.Collectors;
+public class TextStatement extends Statement {
 
-public class TextStatement {
+    @Override
+    protected String footerValue(Customer customer) {
+        String total = String.format("total: %.1f\n", customer.calTotalAmount());
+        String points = String.format("earned points: %.0f\n", customer.calEarnedPoints());
+        return total + points;
+    }
 
-    public String value(Customer customer) {
-        StringBuilder result = new StringBuilder();
+    @Override
+    protected String itemValue(Rental rental) {
+        return String.format("\t" + rental.movie().name() + ": %.2f\n", rental.getCharge());
+    }
 
-//        add header
-        result.append("Rental record for " + customer.id() + ": \n");
-
-//        add detail
-        result.append(customer.rentals().stream().map(rental -> String.format("\t" + rental.movie().name() + ": %.2f\n", rental.getCharge()))
-                .collect(Collectors.joining()));
-
-//        add footer
-        double total = customer.calTotalAmount();
-        result.append(String.format("total: %.1f\n", total));
-        double earnedPoints = customer.calEarnedPoints();
-        result.append(String.format("earned points: %.0f\n", earnedPoints));
-
-        return result.toString();
+    @Override
+    protected String headerValue(String customerId) {
+        return "Rental record for " + customerId + ": \n";
     }
 }
