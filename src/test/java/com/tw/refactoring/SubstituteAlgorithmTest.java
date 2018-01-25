@@ -17,6 +17,7 @@ public class SubstituteAlgorithmTest {
         classA.problemASolution1();
         classA.problemASolution2();
         classA.problemBSolution1();
+        classA.methodShouldInB();
 
         ClassB classB = new ClassB();
         classB.problemBSolution2();
@@ -34,6 +35,10 @@ class ClassA {
 
     public void problemBSolution1 () {
         System.out.println("this is the first solution for problem b");
+    }
+
+    public void methodShouldInB() {
+        System.out.println("this method should be in B, now is in " + this.getClass().getSimpleName());
     }
 
 }
