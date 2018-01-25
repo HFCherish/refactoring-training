@@ -25,4 +25,11 @@ public class LoanTest {
         assertThat(termLoan.getCommitment(), closeTo(1000, 0.01));
         assertThat(termLoan.getExpire(), is(nullValue()));
     }
+
+    @Test
+    public void should_get_term_loan1() {
+        Loan termLoan = new Loan(1000, 1, LocalDate.now());
+
+        System.out.println("some other different code");
+    }
 }
