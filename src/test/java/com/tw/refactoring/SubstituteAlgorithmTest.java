@@ -1,4 +1,4 @@
-package com.tw.refactoring.substitute.algorithm;
+package com.tw.refactoring;
 
 import org.junit.Test;
 
