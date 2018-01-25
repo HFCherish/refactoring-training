@@ -1,13 +1,26 @@
-package com.tw.refactoring.pullingup;
+package com.tw.refactoring;
+
+import org.junit.Test;
 
 /**
  * @author pzzheng
  * @date 1/18/18
  */
-public class Employee {
+public class PullupTest {
+    /**
+     * @author pzzheng
+     */
+    @Test
+    public void test() {
+        Salesman salesman = new Salesman();
+        System.out.println(salesman.getName());
+
+        Engineer engineer = new Engineer();
+        System.out.println(engineer.getName());
+    }
 }
 
-class Salesman extends Employee {
+class Salesman {
     protected String name;
     protected String age;
 
@@ -20,7 +33,7 @@ class Salesman extends Employee {
     }
 }
 
-class Engineer extends Employee {
+class Engineer {
     protected String name;
     protected String industry;
 
