@@ -2,6 +2,8 @@ package com.tw.refactoring;
 
 import org.junit.Test;
 
+import java.util.Locale;
+
 /**
  * @author pzzheng
  * @date 1/18/18
@@ -35,7 +37,9 @@ class Salesman {
 
 class Engineer {
     protected String name;
-    protected String industry;
+    private String industry;
+    private Locale companyLocale;
+    private String companyName;
 
     public String getName() {
         return name;
